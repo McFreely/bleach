@@ -1,0 +1,7 @@
+[package]
+name = "javel"
+version = "0.1.0"
+authors = ["McFreely <paulmcfreely@gmail.com>"]
+
+[dependencies]
+stemmer = "0.3.2"
