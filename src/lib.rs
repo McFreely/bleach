@@ -14,7 +14,7 @@ pub fn filter_unwanted_chars(doc: &String) -> String {
 
 pub fn filter_stop_words(document: &String) -> Vec<&str> {
     // We open the stopwords file...
-    let path = Path::new("stopwords.txt");
+    let path = Path::new("src/stopwords.txt");
     let mut file = match File::open(&path) {
         Err(why) => panic!(println!("Erreur ouverture fichier: {}", why)),
         Ok(file) => file,
