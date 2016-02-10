@@ -3,9 +3,9 @@ name = "bleach"
 version = "0.1.0"
 authors = ["McFreely <paulmcfreely@gmail.com>"]
 description = "A small text pre-processing library for various nlp tasks."
-license = "Mit"
-include = ["src/**"]
-
+license = "MIT"
 
 [dependencies]
 stemmer = "0.3.2"
+
+

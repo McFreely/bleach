@@ -1,10 +1,6 @@
 extern crate stemmer;
 
 use self::stemmer::Stemmer;
-use std::error::Error;
-use std::fs::File;
-use std::io::prelude::*;
-use std::path::Path;
 use std::collections::{HashMap};
 
 pub fn filter_unwanted_chars(doc: &String) -> String {
@@ -13,22 +9,10 @@ pub fn filter_unwanted_chars(doc: &String) -> String {
 }
 
 pub fn filter_stop_words(document: &String) -> Vec<&str> {
-    // We open the stopwords file...
-    let path = Path::new("src/stopwords.txt");
-    let mut file = match File::open(&path) {
-        Err(why) => panic!(println!("Erreur ouverture fichier: {}", why)),
-        Ok(file) => file,
-    };
-
-    // ... and we put its content into the new string
-    let mut s = String::new();
-    match file.read_to_string(&mut s) {
-        Err(why) => panic!("Counldn't open file: {}", Error::description(&why)),
-        Ok(_) => (),
-    }
+    static STOP_WORDS: &'static str = include_str!("stopwords.txt");
 
     // From the "file string", we construct a Set of stopwords
-    let stop_words = s.split_whitespace().collect::<Vec<&str>>();
+    let stop_words = STOP_WORDS.split_whitespace().collect::<Vec<&str>>();
 
     // Build the Set of words in the document
     let mut term_set = document.split_whitespace().collect::<Vec<&str>>();
