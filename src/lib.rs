@@ -25,25 +25,27 @@ pub fn filter_stop_words(document: &String) -> Vec<&str> {
 
 // Make it the more pluggeable possible, so that everyone can choose
 // what operation to operate
-pub fn clean_doc(content: &String, lang: &str) -> Vec<String> {
-    let mut langs = HashMap::new();
-    langs.insert("en", "english".to_string());
-    langs.insert("fr", "french".to_string());
-
+pub fn clean_article(content: &String, lang: &str) -> Vec<String> {
     // Handle gracefully unknown languages
-    let mut stemmer = Stemmer::new(langs.get(&lang).expect("Language not found.")).unwrap();
+    let language = match lang {
+        "fr" => "french".to_string(),
+        _ => "english".to_string(),
+    };
 
-    // TODO 
+    let mut stemmer = Stemmer::new(&language).unwrap();
+
+    // TODO
     // Benchmark lowercase a big string vs map.lowercase Vec
     let lowercase_doc = &content.to_lowercase();
 
     // Filter unwanted Chars
-    // TODO 
+    // TODO
     // Benchmark filter a big string vs map.lowercase Vec
     let clean_doc = filter_unwanted_chars(&lowercase_doc);
 
     // Filter Stop Words
-    // TODO 
+    // TODO
+    // Add stop word list for other languages
     // benchmark actual process versus operations on Vec
     let filtered_doc = filter_stop_words(&clean_doc);
 
