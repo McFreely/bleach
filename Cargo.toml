@@ -1,6 +1,6 @@
 [package]
 name = "bleach"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["McFreely <paulmcfreely@gmail.com>"]
 description = "A small text pre-processing library for various nlp tasks."
 license = "MIT"
